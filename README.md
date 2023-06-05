@@ -1,20 +1,18 @@
 # Shift-OrAlgorithm
-Shift-or algorithm on Alice in wonderland text
+The Shift-Or algorithm is a string matching algorithm used to compare two texts and determine whether one exists as a subtext of the other.
 
-Shift-Or algoritması, iki metni karşılaştırmak ve birinde diğerinin alt metni olarak var olup olmadığını belirlemek için kullanılan bir dize eşleştirme algoritmasıdır.
+The basic logic of the algorithm is to perform the matching using a preprocessed mask table and shift operations. The mask table is a bit mask sequence that determines which of the characters in the text to be searched match the characters in the searched text. The shift operation is the operation of shifting the searched text to the right.
 
-Algoritmanın temel mantığı, önceden işlenmiş bir maske tablosu ve kaydırma operasyonlarını kullanarak eşleştirmeyi gerçekleştirmektir. Maske tablosu, aranacak metindeki karakterlerin hangilerinin aranan metindeki karakterlerle eşleştiğini belirleyen bir bit maske dizisidir. Kaydırma operasyonu, aranan metnin sağa doğru kaydırılması işlemidir.
+The Shift-Or algorithm creates the mask table in the first step and shifts the searched text to the right in the second step. During each scrolling operation, it is checked whether the characters specified in the mask table match the characters in the searched text. If a match is found, the subtext in the searched text has been found.
 
-Shift-Or algoritması, birinci adımda maske tablosunu oluşturur ve ikinci adımda aranan metni sağa doğru kaydırır. Her kaydırma işlemi sırasında, maske tablosunda belirtilen karakterlerin aranan metindeki karakterlerle eşleşip eşleşmediği kontrol edilir. Eşleşme bulunursa, aranan metindeki alt metin bulunmuş demektir.
+The Shift-Or algorithm is somewhat memory-intensive due to its size and preprocessed mask table. However, it is fast compared to some other string matching algorithms and is especially effective for small text. In addition, its extended versions can be used for other problems such as dynamic programming and parallel computing.
 
-Shift-Or algoritması, boyutu ve önceden işlenmiş maske tablosu nedeniyle biraz belleği yoğun kullanır. Ancak, diğer bazı dize eşleştirme algoritmalarına kıyasla hızlıdır ve özellikle küçük metinler için etkilidir. Ayrıca, genişletilmiş versiyonları, dinamik programlama ve paralel hesaplama gibi diğer problemler için de kullanılabilir.
+-Algorithm Analysis-
 
--Algoritma Analizi-
+The runtime of the Shift-Or algorithm occurs in O(nm/w) time to search for a pattern length m in a text of text length n, where w specifies the word size. This time is added in some amount during the creation of the precomputed mask table.
 
-Shift-Or algoritmasının çalışma zamanı, metin uzunluğu n olan bir metinde bir desen uzunluğu m aramak için O(nm/w) zamanında gerçekleşir, burada w, sözcük boyutunu belirtir. Bu zamana, önceden hesaplanmış maske tablosunun oluşturulması sırasında bir miktarda eklenir.
+In the best case, if the pattern never occurs in the text, the runtime of the algorithm will be O(n/w). In this case, the entire text is processed only once and the searched pattern cannot be found.
 
-En iyi durumda, desen metinde hiç geçmiyorsa, algoritmanın çalışma zamanı O(n/w) olacaktır. Bu durumda, metnin tamamı yalnızca bir kez işlenir ve aranan desen bulunamaz.
+In the worst case, when there is no exact match between each pattern character and text characters, the algorithm's runtime will be O(nm/w). In this case, m steps are taken for each character of the mask table and search is performed in n - m + 1 steps.
 
-En kötü durumda, her desen karakteri ile metin karakterleri arasında tam bir eşleşme olmadığında, algoritmanın çalışma zamanı O(nm/w) olacaktır. Bu durumda, maske tablosunun her karakteri için m adımı atılır ve n - m + 1 adımda arama yapılır.
-
-Ortalama durum, desenin metinde rastgele bir şekilde yerleştirildiği durumdur. Shift-Or algoritması, diğer dize eşleştirme algoritmaları gibi, aranan metnin belirli bir bölgesine odaklanmaz, bu nedenle ortalama durum da O(nm/w) olacaktır.
+The average case is when the pattern is randomly placed in the text. The Shift-Or algorithm, like other string matching algorithms, does not focus on a particular region of the searched text, so the average case will be O(nm/w).
